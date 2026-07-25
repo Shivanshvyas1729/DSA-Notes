@@ -1,7 +1,7 @@
 # DSA-Notes
 something is cooking
 https://docs.google.com/spreadsheets/d/1nToH69nQEp5npk9WSPqj4CVzabannLvkW4ILNMu6k3c/edit?gid=234757707#gid=234757707
-
+https://www.risingbrain.org/sheet
 
 
 Here is the comprehensive extraction of the Data Structures and Algorithms (DSA) and Python Basics document you provided. The content, definitions, and examples have been retained and organized according to the source text.
@@ -148,6 +148,69 @@ Here is the comprehensive extraction of the Data Structures and Algorithms (DSA)
 
 
 * **Libraries & Usage:** NumPy (ndarray), Pandas (Series & DataFrame columns), TensorFlow / PyTorch (tensors).
+Here is the time complexity for every Python list operation, based on CPython's internal implementation.
+## 1. Basic Operators & Indexing
+
+| Operation | Syntax Example | Time Complexity | Notes / Description |
+|---|---|---|---|
+| Index Access | lst[i] | $O(1)$ | Direct lookup via memory offset. |
+| Index Assignment | lst[i] = x | $O(1)$ | Direct overwrite at memory offset. |
+| Concatenation | lst1 + lst2 | $O(n + m)$ | Dependent on the sizes of both lists. |
+| Repetition | lst * k | $O(k \cdot n)$ | Allocation size depends on factor $k$. |
+| Membership | x in lst | $O(n)$ | Linear scan from start to finish. |
+| Basic Slicing (Get) | lst[a:b] | $O(k)$ | $k$ is the length of the slice ($b - a$). |
+| Slice Assignment | lst[a:b] = src | $O(k + n)$ | Requires shifting remaining elements. |
+
+------------------------------
+## 2. Built-In Global Functions
+
+| Function | Syntax Example | Time Complexity | Notes / Description |
+|---|---|---|---|
+| Length check | len(nums) | $O(1)$ | CPython tracks list size explicitly. |
+| Maximum | max(nums) | $O(n)$ | Must check every item once. |
+| Minimum | min(nums) | $O(n)$ | Must check every item once. |
+| Summation | sum(nums) | $O(n)$ | Math addition across all items. |
+| Global Sort | sorted(nums) | $O(n \log n)$ | Uses Timsort algorithm; creates a copy. |
+| Construction | list(iterable) | $O(n)$ | Iterates over the source collection. |
+
+------------------------------
+## 3. Built-In List Methods
+
+| Method | Syntax Example | Time Complexity | Notes / Description |
+|---|---|---|---|
+| append() | lst.append(x) | $O(1)$ | Amortized constant time; fast at end. |
+| extend() | lst.extend(iterable) | $O(k)$ | $k$ is the size of the added iterable. |
+| insert() | lst.insert(i, x) | $O(n)$ | Must shift all elements after index $i$. |
+| remove() | lst.remove(x) | $O(n)$ | Linear search followed by shifting items. |
+| pop() (last) | lst.pop() | $O(1)$ | Fast because no shifting is required. |
+| pop() (index) | lst.pop(i) | $O(n)$ | Must shift all elements after index $i$. |
+| clear() | lst.clear() | $O(n)$ | Clears references to all elements. |
+| index() | lst.index(x) | $O(n)$ | Linear search for the first match. |
+| count() | lst.count(x) | $O(n)$ | Scans the entire list to count items. |
+| sort() | lst.sort() | $O(n \log n)$ | In-place Timsort; $O(n)$ if pre-sorted. |
+| reverse() | lst.reverse() | $O(n)$ | In-place swap from outer edges inward. |
+| copy() | lst.copy() | $O(n)$ | Allocates space for a shallow copy. |
+
+------------------------------
+## 4. Advanced Operations
+
+| Operation | Syntax Example | Time Complexity | Notes / Description |
+|---|---|---|---|
+| Delete Index | del lst[i] | $O(n)$ | Shifts elements to fill the gap. |
+| Delete Slice | del lst[a:b] | $O(n)$ | Shifts elements after the deleted chunk. |
+| Comprehension | [x for x in lst] | $O(n)$ | Evaluates expression for each item. |
+
+## Key Takeaway for Optimization
+
+* Fast ($O(1)$): Operations hitting the end of the list (append, pop()) or direct index access (lst[i]).
+* Slow ($O(n)$): Operations hitting the beginning or middle of the list (insert(0, x), pop(0), remove) because Python must shift all subsequent items in memory to maintain order. [1, 2, 3, 4] 
+
+Would you like to explore how to use alternatives like collections.deque if you need fast $O(1)$ insertions at the beginning, or do you want to analyze a specific script's total time complexity?
+
+[1] [https://www.reddit.com](https://www.reddit.com/r/learnpython/comments/1hztaox/if_time_complexity_of_pop_first_item_is_on_and/)
+[2] [https://www.cs.swarthmore.edu](https://www.cs.swarthmore.edu/~knerr/teaching/topics/linkedlists.html)
+[3] [https://medium.com](https://medium.com/@mohitarvindjoshi/the-truth-about-python-lists-nobody-told-you-7b2a5ae3e4e2)
+[4] [https://medium.com](https://medium.com/@ivanmarkeyev/understanding-python-list-operations-a-big-o-complexity-guide-49be9c00afb4)
 
 
 <img width="557" height="93" alt="image" src="https://github.com/user-attachments/assets/04af2113-9c4b-4720-b275-303337aafbd5" />
