@@ -4,6 +4,97 @@ something is cooking
 🔗 [Google Sheet](https://docs.google.com/spreadsheets/d/1nToH69nQEp5npk9WSPqj4CVzabannLvkW4ILNMu6k3c/edit?gid=234757707#gid=234757707)
 🔗 [risingbrain.org sheet](https://www.risingbrain.org/sheet)
 
+<details><summary>array pattern</summary>
+Here are the notes and a quick-reference table for the video "Array Patterns | All 4 must-know patterns for interviews" by RisingBrain. This video breaks down how to stop brute-forcing array problems and start optimizing them by recognizing four fundamental patterns.
+
+## 1. Two-Pointer Approach
+
+**Timestamp:** [[00:59](https://www.youtube.com/watch?v=Kte9TGwV8A0&t=59)]
+
+This pattern is used to find pairs of elements that satisfy a condition (like a specific sum) without relying on nested loops ($O(N^2)$ time complexity).
+
+* **When to use:** When you need to find pairs or triplets that meet a target, and **the array is sorted** (or the order doesn't matter, so you can sort it yourself).
+* **The Approach:**
+* Initialize one pointer at the extreme left (index 0) and one at the extreme right (last index).
+* Calculate the sum (or condition) of the two elements.
+* If the sum matches the target, you're done.
+* If the sum is **less** than the target, you need a larger number, so move the left pointer one step to the right.
+* If the sum is **greater** than the target, you need a smaller number, so move the right pointer one step to the left.
+* *Time Complexity:* Drops to $O(N)$.
+* *Common Problems:* Two Sum, Three Sum, Sort Colors, Move Zeroes.
+
+
+
+## 2. Sliding Window
+
+**Timestamp:** [[04:52](https://www.youtube.com/watch?v=Kte9TGwV8A0&t=292)]
+
+(We covered this in depth previously, but the video reiterates it as a core array pattern).
+
+* **When to use:** When the problem asks for information about a **continuous subarray or substring** (e.g., maximum length, minimum sum).
+* **The Approach:**
+* Instead of recalculating overlapping parts of a window, slide it forward by adding the new element entering the window on the right and subtracting the old element leaving the window on the left.
+* It can be a fixed size or a dynamic size depending on the problem condition.
+
+
+
+## 3. Prefix Sum
+
+**Timestamp:** [[08:26](https://www.youtube.com/watch?v=Kte9TGwV8A0&t=506)]
+
+This pattern is essential when you need to answer **multiple queries** about the continuous summation of subarrays quickly.
+
+* **When to use:** When you need to find the sum of elements between two indices repeatedly, or when dealing with continuous summation logic where sliding window fails.
+* **The Approach:**
+* Create a secondary `resultant` (prefix) array.
+* At each index `i` of the prefix array, store the total sum of the original array from index `0` up to index `i`.
+* To find the sum of any subarray from index `L` (left) to `R` (right), you simply take the prefix sum at `R` and subtract the prefix sum at `L - 1`.
+* *Equation:* `Sum(L to R) = Prefix[R] - Prefix[L - 1]`
+* *Time Complexity:* Pre-computation takes $O(N)$, but answering each query takes $O(1)$, saving massive time on multiple queries.
+* *Common Problems:* Subarray Sum Equals K, Product of Array Except Self.
+
+
+
+## 4. Kadane's Algorithm
+
+**Timestamp:** [[12:29](https://www.youtube.com/watch?v=Kte9TGwV8A0&t=749)]
+
+This pattern is a specific modification of the sliding window concept designed to handle arrays that contain **negative numbers** when searching for maximum sums.
+
+* **When to use:** When calculating the maximum sum of a continuous subarray, and the array contains negative numbers (which breaks standard sliding window logic).
+* **The Approach:**
+* Keep a running sum as you iterate through the array.
+* Keep track of the maximum sum seen so far.
+* **The core rule:** If your running sum drops below zero (becomes negative), it is doing nothing but dragging down future potential sums. Reset your running sum to zero immediately.
+* *Time Complexity:* $O(N)$.
+* *Common Problems:* Maximum Subarray, Maximum Average Subarray.
+
+
+
+---
+
+### Quick Reference Table
+
+| Pattern | How to Identify It | Core Approach |
+| --- | --- | --- |
+| **1. Two-Pointer** | Looking for pairs/triplets; Array is **sorted** (or can be). | Start pointers at opposite ends. Move Left rightward if sum is too small; move Right leftward if sum is too large. |
+| **2. Sliding Window** | Asking for continuous **subarray/substring** stats. | Slide a window by adding the new right element and subtracting the old left element. |
+| **3. Prefix Sum** | **Multiple queries** for sums between two indices. | Pre-compute a running total array. `Sum(L to R) = Prefix[R] - Prefix[L - 1]`. |
+| **4. Kadane's** | Max subarray sum when array has **negative numbers**. | Keep a running sum. If the running sum ever becomes negative, reset it to zero immediately. |
+
+
+
+
+
+
+
+
+
+
+
+
+
+</details>
 ---
 
 <details>
