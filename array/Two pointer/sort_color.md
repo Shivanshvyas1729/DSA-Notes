@@ -5,7 +5,11 @@ Here are the comprehensive notes on the video **"Sort Colors | Brute Force to Du
 # 📌 Notes: Sort Colors (LeetCode #75)
 
 **Video Link:** [Sort Colors Tutorial](https://youtu.be/E-txNhS9TnI?si=WgTJSW9TkCepyHgP)
+<details> <summary>flow</summary>
+[Sorting Colors.pdf](https://github.com/user-attachments/files/30386472/Sorting.Colors_.Brute.Force.to.Optimal.pdf)
+<img width="629" height="897" alt="image" src="https://github.com/user-attachments/assets/463cc14e-d94a-4b25-85a1-7580d8a0a611" />
 
+</details>
 ---
 
 ## 1. Problem Statement [[00:50](https://www.google.com/search?q=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DE-txNhS9TnI%26t%3D50)]
