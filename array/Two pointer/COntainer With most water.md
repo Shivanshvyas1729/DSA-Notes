@@ -1,4 +1,3 @@
-Haha, my apologies! That was a complete hiccup on my end — I definitely don't need Google Keep or any app permissions. I'm right here in this chat and ready to give you clean, structured study notes.
 
 Here are your summary notes for **LeetCode 11: Container With Most Water**.
 
@@ -26,19 +25,20 @@ $$\text{Area} = \text{Width} \times \text{Height of Shorter Line}$$
 
 
 
----
 
 ### 3. Algorithm Steps
 
 1. **Initialize:** `left = 0`, `right = len(height) - 1`, and `max_water = 0`.
 2. **Loop:** While `left < right`:
-* Calculate $\text{current\_water} = (\text{right} - \text{left}) \times \min(\text{height}[\text{left}], \text{height}[\text{right}])$.
-* Update `max_water = max(max_water, current_water)`.
-* If `height[left] < height[right]`, increment `left += 1`.
-* Otherwise, decrement `right -= 1`.
+<img width="419" height="34" alt="image" src="https://github.com/user-attachments/assets/5350138d-4fe8-44ee-baa4-50722c7bd949" />
 
-
+    * Update `max_water = max(max_water, current_water)`.
+    * If `height[left] < height[right]`, increment `left += 1`.
+    * Otherwise, decrement `right -= 1`.
 3. **Return:** `max_water`.
+
+---
+
 
 ---
 
