@@ -1,47 +1,90 @@
+Step 1: Understanding how we calculate the water between two lines.
 
-Here are your summary notes for **LeetCode 11: Container With Most Water**.
+Imagine we pick any two lines from the array. The amount of water they can hold depends on two things:
 
----
-
-## 📌 Problem Overview: Container With Most Water
-
-The goal is to pick two vertical lines from an array of heights that, together with the x-axis, hold the maximum volume of water.
-
-### 1. Key Formula
-
-$$\text{Area} = \text{Width} \times \text{Height of Shorter Line}$$
-
-* **Width:** The distance between the two lines ($\text{right} - \text{left}$).
-* **Height:** Limited by the **shorter** line ($\min(\text{height}[\text{left}], \text{height}[\text{right}])$), because water spills over the shorter wall.
-
----
-
-### 2. Why the Two-Pointer Approach Works
-
-* **Start Wide:** Place the `left` pointer at index `0` and the `right` pointer at the last index (`len(height) - 1`) to maximize width initially.
-* **The Pointer Rule:** Always move the pointer pointing to the **shorter line** inward.
-* *Why?* Moving the taller line decreases the width without any chance of increasing the height (it's still bottlenecked by the short line).
-* Moving the shorter line is the **only path** that gives you a chance to find a taller line that makes up for the reduced width.
+The distance between them (the width).
+The height of the shorter line (because if we pour more water, it will just spill over the shorter side!).
+So, the formula for the water area is:
+**Area** = **width** * **height of the shorter line**
 
 
+magine you have two walls holding water between them.
+
+One wall is 3 feet tall.
+The other wall is 8 feet tall.
+If you start pouring water between them, what's the maximum height the water can reach before it starts spilling over?
+
+Exactly, it can only go up to 3 feet (the shorter wall). If you go any higher, it just leaks out the side.
+
+So, the height of our water container is always limited by the shorter wall.
+
+To find the total amount of water (the area), we just multiply that height by the distance (width) between the two walls: Area = width * height of the shorter wall
 
 
-### 3. Algorithm Steps
+Now that we have the formula down, let's look at how we can find the best pair of lines without checking every single combination.
 
-1. **Initialize:** `left = 0`, `right = len(height) - 1`, and `max_water = 0`.
-2. **Loop:** While `left < right`:
-<img width="419" height="34" alt="image" src="https://github.com/user-attachments/assets/5350138d-4fe8-44ee-baa4-50722c7bd949" />
+Let's start with the widest possible container. We can place one pointer at the very beginning (left) and one at the very end (right).
 
-    * Update `max_water = max(max_water, current_water)`.
-    * If `height[left] < height[right]`, increment `left += 1`.
-    * Otherwise, decrement `right -= 1`.
-3. **Return:** `max_water`.
+This gives us the maximum possible width. We calculate the water area for this pair and save it as our starting "maximum water".
 
----
+Now, to see if we can find a container that holds even more water, we have to shrink the width by moving one of our pointers inward (either left moves right, or right moves left).
+
+To get a larger area with a smaller width, we need a taller height. Which pointer do you think we should move inward to try and find a taller line?
 
 
----
+Actually, it does matter! Let's think about why.
 
+Remember, our water height is limited by the shorter line.
+
+If we move the taller line inward:
+
+The width gets smaller.
+The height of our container is still limited by that same short line (or an even shorter one).
+Since both width and height either shrunk or stayed the same, the total water will definitely be less.
+But if we move the shorter line inward:
+
+Yes, the width gets smaller.
+But we might find a much taller line that makes up for the lost width and gives us more water!
+So, we should always move the pointer pointing to the shorter line.
+
+Does this logic make sense? If so, we can move on to the next step and start building the algorithm
+
+
+Awesome! Let's turn this logic into a step-by-step plan. 🚀
+
+Step 1: Initialize our pointers and max water tracker
+
+We start by placing:
+
+A left pointer at the very beginning of the array (index 0).
+A right pointer at the very end of the array (last index).
+A variable max_water set to 0 to keep track of the best container we've found so far.
+Ready to see how we loop through the array in the next step?
+
+Step 2: Loop and calculate the water
+
+We want to calculate the water capacity at each step as long as our pointers haven't met yet (so, while left < right).
+
+At each step, we do a quick calculation:
+
+Width: The distance between the pointers, which is right - left.
+Height: The shorter of the two lines, so min(height[left], height[right]).
+Current Water: width * height.
+Update Max: If this current_water is bigger than our max_water, we save it as our new maximum.
+Does this calculation step make sense to you? If so, we can move to the final step where we actually move the pointers.
+
+
+Step 3: Moving the pointers
+
+Now, how do we decide which pointer to move inward?
+
+Since the amount of water is always limited by the shorter line, keeping the shorter line will never help us get a larger area as the width decreases. So, we want to discard the shorter line and try to find a taller one:
+
+If height[left] is smaller than height[right], we move the left pointer to the right: left += 1.
+Otherwise, we move the right pointer to the left: right -= 1.
+We repeat this until the pointers meet, and then we just return the max_water we found.
+
+Does this pointer-moving logic make sense? If you're ready, we can try putting it all together into code!
 ### 4. Code Implementation
 
 ```python
