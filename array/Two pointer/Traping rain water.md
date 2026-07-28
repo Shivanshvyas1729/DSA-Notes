@@ -1,6 +1,8 @@
 # LeetCode 42: Trapping Rain Water — Study Notes
 
 ---
+<img width="447" height="472" alt="image" src="https://github.com/user-attachments/assets/830cdc37-3dd8-4b2a-97a7-a5400c1934d3" />
+
 
 # 1. Problem Overview & Core Intuition
 
