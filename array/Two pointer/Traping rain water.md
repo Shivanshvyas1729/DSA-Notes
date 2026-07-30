@@ -13,14 +13,8 @@ Given `n` non-negative integers representing an elevation map where the width of
 Water sits on top of any block at index `i` only if there are taller boundaries to both its left and its right.
 
 The water level is constrained by the **shorter** of the tallest boundaries on either side.
+<img width="509" height="92" alt="image" src="https://github.com/user-attachments/assets/ec84e8a1-b854-42f5-b2c5-b16da30ca702" />
 
-\[
-\text{Water Level}(i) = \min(\text{left\_max}_i,\ \text{right\_max}_i)
-\]
-
-\[
-\text{Trapped Water}(i)=\max(0,\ \text{Water Level}(i)-\text{height}[i])
-\]
 
 ### Why "Anywhere" Works
 
@@ -64,9 +58,7 @@ Idx:  0   1   2   3   4
 
 Water:
 
-\[
-\max(0,\min(2,2)-5)=0
-\]
+<img width="309" height="71" alt="image" src="https://github.com/user-attachments/assets/58e7bed4-1415-41c5-82ea-d7598416d93f" />
 
 ---
 
